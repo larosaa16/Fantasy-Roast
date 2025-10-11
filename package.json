@@ -1,0 +1,14 @@
+{
+  "name": "fantasy-roast",
+  "version": "0.2.0",
+  "description": "Minimal Fantasy Roast control room server without external npm dependencies.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "license": "MIT"
+}

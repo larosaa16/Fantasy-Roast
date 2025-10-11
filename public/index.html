@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fantasy Roast Control Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header">
+        <h1>Fantasy Roast</h1>
+        <p class="page__subtitle">
+          Summon matchup breakdowns, celebrate the champs, and roast the chumps.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="card">
+          <h2>Matchup Lookup</h2>
+          <form id="matchup-form" class="form">
+            <div class="form__row">
+              <label for="platform">Platform</label>
+              <select id="platform" name="platform" required>
+                <option value="sleeper">Sleeper</option>
+                <option value="yahoo">Yahoo</option>
+                <option value="espn">ESPN</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label for="leagueId">League ID</label>
+              <input id="leagueId" name="leagueId" type="text" required />
+            </div>
+            <div class="form__row">
+              <label for="week">Week</label>
+              <input id="week" name="week" type="number" min="1" max="18" value="1" required />
+            </div>
+            <button type="submit" class="button">Fetch Matchups</button>
+          </form>
+          <div id="matchup-results" class="results" aria-live="polite"></div>
+        </section>
+
+        <section class="card">
+          <h2>Generate Roast</h2>
+          <form id="roast-form" class="form">
+            <div class="form__row">
+              <label for="roast-platform">Platform</label>
+              <select id="roast-platform" name="platform" required>
+                <option value="sleeper">Sleeper</option>
+                <option value="yahoo">Yahoo</option>
+                <option value="espn">ESPN</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label for="roast-league">League ID</label>
+              <input id="roast-league" name="leagueId" type="text" required />
+            </div>
+            <div class="form__row">
+              <label for="matchup-id">Matchup ID</label>
+              <input id="matchup-id" name="matchupId" type="text" required />
+            </div>
+            <textarea
+              id="matchup-payload"
+              name="payload"
+              class="form__textarea"
+              placeholder="Paste matchup JSON here or load from the lookup panel."
+              required
+            ></textarea>
+            <button type="submit" class="button button--accent">Cook the Roast</button>
+          </form>
+          <div id="roast-output" class="results results--scroll" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="matchup-template">
+      <article class="matchup">
+        <header class="matchup__header">
+          <h3 class="matchup__title"></h3>
+          <span class="matchup__meta"></span>
+        </header>
+        <div class="matchup__teams"></div>
+        <button class="button button--ghost matchup__copy">Use in roast form</button>
+      </article>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
