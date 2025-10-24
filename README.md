@@ -124,6 +124,10 @@ Here are a few playful feature ideas to make the control room even more entertai
 4. 📸 **Meme & GIF injector** – Auto-generate a meme or GIF that matches the narrative of the matchup’s roast or praise.
 5. 📰 **Weekly smack-talk digest** – Bundle the best burns, praiseworthy feats, and standout stats into a shareable newsletter for the league.
 
+## Product Decisions & Ops Playbook
+
+Looking for deeper guidance on how to extend the app? Check out [`docs/experience-strategy.md`](docs/experience-strategy.md) for decisions around Sleeper automation, roast tone logic, formatting defaults, data storage, and error handling.
+
 ## Contributing
 
 1. Fork the repo and create a feature branch.
