@@ -1,0 +1,245 @@
+:root {
+  color-scheme: dark;
+  --bg-900: #07080f;
+  --bg-800: #0c0e1a;
+  --bg-700: #121428;
+  --bg-600: #191b34;
+  --accent: #ff7a45;
+  --accent-soft: rgba(255, 122, 69, 0.18);
+  --text-100: #f6f8ff;
+  --text-300: #c7cae6;
+  --text-500: #8d90b2;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 10px 30px rgba(7, 8, 15, 0.55);
+  --radius-lg: 18px;
+  --radius-sm: 12px;
+  --font-body: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background: radial-gradient(circle at top, rgba(255, 122, 69, 0.1), transparent 55%),
+    var(--bg-900);
+  color: var(--text-100);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 16px 64px;
+}
+
+.page {
+  width: min(1080px, 100%);
+}
+
+.page__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.page__header h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: 0.04em;
+}
+
+.page__subtitle {
+  margin: 0;
+  color: var(--text-300);
+  font-size: 1rem;
+}
+
+.layout {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.card {
+  background: linear-gradient(155deg, var(--bg-700), var(--bg-800));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.95rem;
+  color: var(--text-300);
+}
+
+input,
+select,
+textarea {
+  background: var(--bg-600);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  color: var(--text-100);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: var(--bg-600);
+  color: var(--text-100);
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 24px rgba(255, 122, 69, 0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button--accent {
+  background: linear-gradient(135deg, var(--accent), #ff9f68);
+  color: #0c0e1a;
+}
+
+.button--ghost {
+  background: transparent;
+  border-color: var(--border);
+}
+
+.results {
+  display: grid;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--text-300);
+}
+
+.error {
+  color: #ffb6a0;
+}
+
+.results p {
+  margin: 0;
+}
+
+.results--scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.matchup {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  background: rgba(12, 14, 26, 0.6);
+  display: grid;
+  gap: 14px;
+}
+
+.matchup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.matchup__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.matchup__meta {
+  font-size: 0.85rem;
+  color: var(--text-500);
+}
+
+.matchup__teams {
+  display: grid;
+  gap: 12px;
+}
+
+.team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(21, 23, 44, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.team__name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.team__score {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.team--winner {
+  border-color: rgba(85, 230, 193, 0.45);
+  box-shadow: 0 0 0 1px rgba(85, 230, 193, 0.4);
+}
+
+.team--loser {
+  border-color: rgba(255, 122, 69, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 122, 69, 0.4);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 32px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
