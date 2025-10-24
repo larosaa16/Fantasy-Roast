@@ -126,7 +126,7 @@ Here are a few playful feature ideas to make the control room even more entertai
 
 ## Product Decisions & Ops Playbook
 
-Looking for deeper guidance on how to extend the app? Check out [`docs/experience-strategy.md`](docs/experience-strategy.md) for decisions around Sleeper automation, roast tone logic, formatting defaults, data storage, and error handling.
+Looking for deeper guidance on how to extend the app? Check out [`docs/experience-strategy.md`](docs/experience-strategy.md) for decisions around Sleeper automation, roast tone logic, formatting defaults, data storage, release automation, UI expansion, and prompt tuning.
 
 ## Contributing
 
