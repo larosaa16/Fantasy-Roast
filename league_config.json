@@ -1,14 +1,9 @@
 {
-  "league_name": "Your League Name",
+  "league_name": "Football Fireball & Family",
+  "league_id": "55920",
   "team_size": 12,
-  "nicknames": {
-    "Manager Name": "their nickname"
-  },
-  "running_jokes": [
-    "Add inside jokes here, e.g. 'Jeff always drops his studs the week they go off'"
-  ],
-  "traditions": [
-    "Add league traditions here, e.g. 'Last place has to wear a jersey to the draft'"
-  ],
-  "roast_persona": "Your Commissioner's Robot"
+  "nicknames": {},
+  "running_jokes": [],
+  "traditions": [],
+  "roast_persona": "The Fireball Oracle"
 }
