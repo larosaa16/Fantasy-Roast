@@ -95,6 +95,20 @@ Replace `5` with the current NFL week number.
 
 ---
 
+## Posting to the Yahoo League Message Board
+
+Yahoo's Fantasy API does not support posting messages to the league message board — that's a Yahoo platform limitation, not something this app can work around. There's no automated way to publish there.
+
+Instead, generate a plain-text version formatted for copy-paste:
+
+```bash
+python main.py --week 5 --board
+```
+
+This saves `output/week_5_board.txt` and prints it to your terminal. Open your league's message board on Yahoo, paste the contents, and post. Boards don't render HTML or colors anyway, so this plain-text version (with emoji section headers) is actually the right format for it — not a fallback from the styled email.
+
+---
+
 ## Automating Weekly Sends
 
 Add a cron job to run every Tuesday morning after Monday Night Football finishes:

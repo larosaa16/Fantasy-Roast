@@ -3,6 +3,9 @@ Entry point. Run modes:
   python main.py --week 5              # fetch, generate, send
   python main.py --week 5 --dry-run    # fetch, generate, print HTML to stdout
   python main.py --week 5 --preview    # fetch, generate, save to output/preview.html
+  python main.py --week 5 --board      # fetch, generate, save plain-text version
+                                        # for pasting into the Yahoo league message
+                                        # board (Yahoo's API can't post there directly)
   python main.py --auth                # run Yahoo OAuth flow and save token
 """
 
@@ -32,12 +35,14 @@ def run_auth() -> None:
     print("Authentication successful. Token saved to data/token.json")
 
 
-def run_roast(week: int, dry_run: bool = False, preview: bool = False) -> None:
+def run_roast(week: int, dry_run: bool = False, preview: bool = False, board: bool = False) -> None:
     _require_env("YAHOO_CLIENT_ID", "YAHOO_CLIENT_SECRET", "YAHOO_LEAGUE_ID", "ANTHROPIC_API_KEY")
-    if not dry_run and not preview:
+    send_email = not dry_run and not preview and not board
+    if send_email:
         _require_env("EMAIL_SENDER", "EMAIL_PASSWORD", "EMAIL_RECIPIENTS")
 
     from src.awards_engine import compute_awards, load_awards_history, update_awards_history
+    from src.board_formatter import format_for_board
     from src.claude_client import call_prompt
     from src.data_fetcher import fetch_weekly_data
     from src.email_assembler import assemble_email
@@ -66,6 +71,19 @@ def run_roast(week: int, dry_run: bool = False, preview: bool = False) -> None:
         build_assembly_prompt(data, matchup_outputs, awards_output)
     )
 
+    if board:
+        print("Formatting for league message board...")
+        board_text = format_for_board(data, matchup_outputs, awards_output, assembly_output)
+        out_dir = Path("output")
+        out_dir.mkdir(exist_ok=True)
+        out_path = out_dir / f"week_{week}_board.txt"
+        out_path.write_text(board_text)
+        print(f"Board post saved to {out_path}")
+        print("Copy its contents and paste into your Yahoo league message board.")
+        print("\n" + "=" * 60)
+        print(board_text)
+        return
+
     print("Assembling email...")
     html = assemble_email(data, matchup_outputs, awards_output, assembly_output)
 
@@ -92,13 +110,14 @@ def main() -> None:
     parser.add_argument("--week", type=int, help="NFL week number to roast")
     parser.add_argument("--dry-run", action="store_true", help="Print HTML to stdout, don't send")
     parser.add_argument("--preview", action="store_true", help="Save HTML to output/week_N_preview.html")
+    parser.add_argument("--board", action="store_true", help="Save plain-text version to output/week_N_board.txt for the Yahoo league message board")
     parser.add_argument("--auth", action="store_true", help="Run Yahoo OAuth setup")
     args = parser.parse_args()
 
     if args.auth:
         run_auth()
     elif args.week:
-        run_roast(week=args.week, dry_run=args.dry_run, preview=args.preview)
+        run_roast(week=args.week, dry_run=args.dry_run, preview=args.preview, board=args.board)
     else:
         parser.print_help()
 

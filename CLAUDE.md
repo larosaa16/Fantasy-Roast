@@ -27,6 +27,10 @@ python main.py --week 5 --dry-run
 # Generate and send
 python main.py --week 5
 
+# Generate plain-text version for the Yahoo league message board
+# (Yahoo's API has no endpoint to post there directly — this is copy-paste)
+python main.py --week 5 --board
+
 # First-time Yahoo OAuth setup
 python main.py --auth
 ```
@@ -55,6 +59,7 @@ send_roast_email()         → Gmail SMTP
 - `src/claude_client.py` — single `call()` function with exponential backoff retry; model set to `claude-opus-4-7`
 - `src/data_fetcher.py` — yfpy wrapper that normalizes raw Yahoo API responses into `WeeklyData`
 - `src/email_assembler.py` — parses Claude's HTML fragment output by CSS class, renders Jinja2 template
+- `src/board_formatter.py` — reuses the same CSS-class extraction to produce a plain-text version for manual posting to the Yahoo league message board (Yahoo's API cannot post there)
 - `templates/roast_email.html` — single-column dark sports-newsletter design; all styles inline for Gmail
 
 ### Claude Output Contract
