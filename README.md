@@ -19,8 +19,21 @@ Automatically generates and emails a weekly Fantasy Football roast to your Yahoo
 
 ### 1. Install Python dependencies
 
+Create a virtual environment and install into it:
+
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate    # on Windows: .venv\Scripts\activate
+pip install "setuptools<60" wheel
 pip install -r requirements.txt
+```
+
+> **Why `setuptools<60`?** `yfpy` depends on `rauth`, an old OAuth1 library whose build script is incompatible with modern `setuptools` (fails with `AttributeError: install_layout`). Installing an older `setuptools` first avoids the issue. This only affects the initial install — the rest of the app doesn't touch `setuptools` at runtime.
+
+Every time you come back to run the app in a new terminal session, reactivate the virtual environment first:
+
+```bash
+source .venv/bin/activate
 ```
 
 ### 2. Create a Yahoo Developer App

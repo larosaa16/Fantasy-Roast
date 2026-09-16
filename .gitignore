@@ -1,4 +1,5 @@
 .env
+.venv/
 data/token.json
 output/
 __pycache__/
